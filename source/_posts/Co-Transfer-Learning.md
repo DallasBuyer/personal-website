@@ -5,8 +5,6 @@ tags: transfer learning
 categories: transfer learning
 ---
 
-## Summary
-
 个人感觉这篇文章很有新意，扩展了传统的迁移学习场景，和归纳式迁移学习一样，假设目标域也有标签数据，但是它的创新点在于co-transfer，即进行了双向迁移，使得任何一个领域都可以辅助其他领域迁移。而作者实现co-transfer在于利用了两种关系，一种是Intra-relationship，这里可以直接在同一个特征空间内用距离度量来构造；另外一种是inter-relationships，这里很巧妙地借助了co-occurrence information，注意这里的co-occurrence和多视角学习中的instance-level co-occurrence并不相同。之后将两种关系合并构造一个coupled Markov chain形成了一个联合转移概率图，之后通过向标签分布的概率转移来实现标签预测，这里有趣的是还引入了多标签和标签ranking的概念，有兴趣的同学也可以借鉴这种思想解决多标签分类的问题。
 
 ## <!--more-->
