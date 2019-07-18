@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="Overview of Forecasting-Principles and Practice"><meta name="keywords" content="time series models, DallasBuyer"><link rel="alternate" href="/default" title="DallasBuyer"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="http://yoursite.com/2019/07/18/overview: time series models/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css"><script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true,"latex":true};
+</script>
+
+    <title>Overview of Forecasting-Principles and Practice - DallasBuyer</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">DallasBuyer</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/publications/">
+        <li class="mobile-menu-item">Publications
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">DallasBuyer</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/publications/">
+            Publications
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">Overview of Forecasting-Principles and Practice
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-07-18
+        </span><span class="post-category">
+            <a href="/categories/time-series-models-forecasting/">time series models, forecasting</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-What-can-be-forecast"><span class="toc-text">1. What can be forecast?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Forecasting-planning-and-goals"><span class="toc-text">2. Forecasting, planning and goals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Determining-what-to-forecast"><span class="toc-text">3. Determining what to forecast</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Forecasting-data-and-methods"><span class="toc-text">4. Forecasting data and methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Time-series-forecasting"><span class="toc-text">4.1. Time series forecasting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Predictor-variables-and-time-series-forecasting"><span class="toc-text">4.2. Predictor variables and time series forecasting</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-The-basic-steps-in-a-forecasting-task"><span class="toc-text">5. The basic steps in a forecasting task</span></a></li></ol>
+    </div>
+  </div><div class="post-content"><p>最近开始学习一些有关时间序列模型的内容，在此记录下来。此系列博客主要根据一本在线电子书的内容整理而来，为了目的是记录自己的学习历程，让自己的印象更加深刻。这是这本书的<a href="https://www.otexts.org/fpp" target="_blank" rel="noopener">网页连接</a>。<br>这本数的题目叫做Forecasting:Principles and Practice，原来自己接触的大部分内容都属于机器学习，无非就是两大任务Prediction和Regreesion，而这里的Forecasting本人理解更倾向于是对时间序列进行预测，即预测未来某个时候挥发生的事情，而不是像分类和回归一样针对某个样本判断其类别或者是取值。</p>
+<h2 id><a href="#" class="headerlink" title></a><a id="more"></a></h2><h2 id="1-What-can-be-forecast"><a href="#1-What-can-be-forecast" class="headerlink" title="1. What can be forecast?"></a>1. What can be forecast?</h2><p>其实forecast有很多场景，比如预测未来5年整个国家需要的用电量，这会决定国家对于发电厂等基础设备的投资建设；比如预测某个公司下周客服中心的呼叫量，这会决定这个公司应该招收多少客服人员；再比如预测股市的走势以决定怎么投资，预测电商网站的销量以决定需要怎么调整供应链等等。这些场景都有一个共性的问题就是它们所产生的数据具有时序性。而一个事件的可预测性一般由以下几点决定：</p>
+<ul>
+<li>我们是否充分理解导致预测结果的因素</li>
+<li>我们能够获取多少以往的数据</li>
+<li>预测是否会影响我们想要预测的事情</li>
+</ul>
+<p>比如我们要预测用电量的话应该比较容易，因为首先我们有大量的数据，其次我们很理解是什么因素导致了用电量的变化，比如气温，节假日，经济环境等。但是想要预测汇率可能就有些困难了，因为我们虽然有大量的数据，但是我们不知道有哪些确定性的因素会影响汇率的变化。在forecasting中，很重要的一点是我们要知道什么时间我们能够精准的预测，什么时候预测的结果比投硬币要好。好的预测模型通常能够捕获历史数据中的patterns和relationships，而不是简单的复制过去发生的事情。我这里的关键就是我们采用什么样的模型能够把历史数据中的一些噪声给去掉，而提取出那些有效的patterns和relationships，并且根据未来发生事情的factors或者partial pattern来预测它的最终结果。</p>
+<h2 id="2-Forecasting-planning-and-goals"><a href="#2-Forecasting-planning-and-goals" class="headerlink" title="2. Forecasting, planning and goals"></a>2. Forecasting, planning and goals</h2><p>其实forecasting在商业中是一个很常见的统计学任务，它可以为未来的产品规划，物流和人事，提供一个长期的战略计划。但是，在商业环境中forecasting一般完成的比较差劲而且还容易和另外两个内容混淆，就是planning和goals。</p>
+<ul>
+<li>Forecasting: 是用已知的信息去尽可能准确去预测未来，这些已知信息包含historical data和knowledge of any future events that might impact the forecasts(factors)。</li>
+<li>Goals: 目标是你想要它发生的事情，这里不涉及计划或者你的预测，只是你定的一个方向，能否实现，或者怎么实现都合目标无关。</li>
+<li>Planning: 而计划就是为Forecasting和Goals负责的，计划就涉及根据预测来采取合适的行动从而让你的目标达成。</li>
+</ul>
+<p>Forecasting是管理的决策行动中很关键的一部分，它为决策提供了根据，一般来说预测分为三类</p>
+<ul>
+<li>Short-term forecasts: scheduling of personnel, production and transportation.</li>
+<li>Medium-term forecasts: future resource requirements, such as raw materials, hire personnel, or buy machinery and equipment.</li>
+<li>Long-term forecasts:strategic planning, including market opportunities, environmental factors and internal resources.</li>
+</ul>
+<h2 id="3-Determining-what-to-forecast"><a href="#3-Determining-what-to-forecast" class="headerlink" title="3. Determining what to forecast"></a>3. Determining what to forecast</h2><p>我们做预测的时候首先要清楚的就是预测什么，当面对很多历史数据时，要先根据商业环境和需求明确预测目的</p>
+<ul>
+<li>every product line, or for groups of products?</li>
+<li>every sales outlet, or for outlets grouped by region, or only for total sales?</li>
+<li>weekly data, monthly data or annual data?</li>
+</ul>
+<p>在确定的需要预测是什么之后紧接着的问题就是how frequent，我们需要每天更新预测数据吗，还是每周，每个月？在知道了这些之后才开始怎么预测的问题，就涉及到了methods和data。</p>
+<h2 id="4-Forecasting-data-and-methods"><a href="#4-Forecasting-data-and-methods" class="headerlink" title="4. Forecasting data and methods"></a>4. Forecasting data and methods</h2><p>预测方法的选择取决于可获取的数据，如果我们无法获取到数据，那么可以采用<strong>qualitative forecasting(also known as judgmental forecasting)</strong>方法。而当以下条件满足时我们可以采用<strong>quantitative forecasting</strong>方法。</p>
+<ul>
+<li>numerical information about the past is available;</li>
+<li>it is reasonabe to assume that some aspects of the past patterns will continue into the future.</li>
+</ul>
+<p>有很多quantitative forecasting方法可以采用，一般来说大部分的quantitative prediction问题要么使用series data(collected at regular intervals over time)，要么使用cross-sectional data(collected at a single point in time)。而本书关注于time series domain。</p>
+<h3 id="4-1-Time-series-forecasting"><a href="#4-1-Time-series-forecasting" class="headerlink" title="4.1. Time series forecasting"></a>4.1. Time series forecasting</h3><p>下面是一些例子：</p>
+<ul>
+<li>Daily IBM stock prices</li>
+<li>Monthly rainfall</li>
+<li>Quarterly sales results for Amazon</li>
+<li>Annual Google profits</li>
+</ul>
+<p>本书只关注于一些固定区间时间长度的时间序列，比如hourly, daily, weekly, monthly, quarterly和annually。不关注irregularly spaced time series。<br>最简单的时间序列预测方法就是仅仅根据以往的时序数据来预测未来的时序数据，而不去考虑导致最终结果的因素。常见的用于预测的时间序列模型包括<strong>decomposition models, exponential smoothing models and ARIMA models</strong>。</p>
+<h3 id="4-2-Predictor-variables-and-time-series-forecasting"><a href="#4-2-Predictor-variables-and-time-series-forecasting" class="headerlink" title="4.2. Predictor variables and time series forecasting"></a>4.2. Predictor variables and time series forecasting</h3><p>一般来说，预测变量(predictor variables)在时间序列预测中很有效，假设我们现在想预测某个区域夏季一个小时的供电量，可以采用以下模型。<br>$$<br>\mathrm{ED} = f(\mathrm{current\ temperature, strength\ of\  economy, population, time\ of\ day, day\ of\ week, error}).<br>$$<br>其实上述关系也不完全正确，因为供电量中总有一些变化是无法用上述预测变量来解释的，而最右侧的$\mathrm{error}$项就可以代表随机波动和那些没有被包含到模型中的其他相关变量。我们可以叫上述为<strong>expanatory model</strong>，因为它可以帮助解释是什么引起了供电量需求的变化。<br>因为随着时间变化供电量可以形成一个时间序列，所以我们也可以用一个如下的<strong>time series model</strong>来预测。<br>$$<br>\mathrm{ED_{t+1}}=f(\mathrm{ED_t, ED_{t-1},ED_{t-2}, ED_{t-3}, \ldots,error})<br>$$<br>这里$t$表示当前一个小时，$t+1$表示下一个小时，$t-1$表示前一个小时。这里只采用了过去的时序数据，而没有外部变量。同样的，这里的$\mathrm{error}$表示一些随机波动和没有包含到模型里面的相关变量。当然也有第三种模型结合前两种，可以叫做混合模型。<br>$$<br>\mathrm{ED_{t+1}}=f(\mathrm{ED_t, current\ temperature, strength\ of\  economy, population, time\ of\ day, day\ of\ week, error})<br>$$<br>这类模型也叫做<strong>dynamic regression model, panel data models, longitudinal models, transfer functions models, linear system models</strong>。</p>
+<h2 id="5-The-basic-steps-in-a-forecasting-task"><a href="#5-The-basic-steps-in-a-forecasting-task" class="headerlink" title="5. The basic steps in a forecasting task"></a>5. The basic steps in a forecasting task</h2><ol>
+<li>Problem definition</li>
+<li>Gathering information</li>
+<li>Preliminary(exploratory analysis)</li>
+<li>Choosing and fitting models</li>
+<li>Using and evaluating a forecasting model</li>
+</ol>
+
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/time-series-models/">time series models</a>
+            </div>
+        
+        <nav class="post-nav"><a class="next" href="/2019/05/03/random network generator/">
+        <span class="next-text nav-default">Exploring Randomly Wired Neural Networks</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:6171610015@stu.jiangnan.edu.cn" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/dallasbuyer" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2019<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">PengXu</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>

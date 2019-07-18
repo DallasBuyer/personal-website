@@ -124,10 +124,10 @@
     <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Motivation"><span class="toc-text">Motivation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Methodology"><span class="toc-text">Methodology</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Random-Neural-Generator"><span class="toc-text">Random Neural Generator</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Random-Graph"><span class="toc-text">Random Graph</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-Network-Structures-from-Graphs"><span class="toc-text">Generate Network Structures from Graphs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Design-and-Optimization"><span class="toc-text">Design and Optimization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Motivation"><span class="toc-text">1. Motivation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Methodology"><span class="toc-text">2. Methodology</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Random-Neural-Generator"><span class="toc-text">3. Random Neural Generator</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Random-Graph"><span class="toc-text">3.1. Random Graph</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Generate-Network-Structures-from-Graphs"><span class="toc-text">3.2. Generate Network Structures from Graphs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Design-and-Optimization"><span class="toc-text">4. Design and Optimization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Reference"><span class="toc-text">5. Reference</span></a></li></ol>
     </div>
   </div><div class="post-content"><p>不同与以往的网络结构搜索算法，本文没有使用强化学习的方式令搜索出来的网络结构分类精度的reward很高。而是加不受限制的随机连接结构有怎样的表现。实验结果显示随机网络生成器所生成的网络结构的表现大多情况下能和人为设计的，通过NAS搜索得到的结果相媲美。一方面这篇文章提出了这种新的思想，就是设计不同的网络生成器；另一方面，结果表明用RL方式的暴力搜索其实并没有很大的优势，距离AutoML也还很遥远。由此启发我们从设计不同的搜索算法，搜索空间转而研究设计具有不同的先验知识的网络生成器。</p>
-<h2 id><a href="#" class="headerlink" title></a><a id="more"></a></h2><h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>现在大多数神经网络的成功在于其复杂的网络结构设计，为了探索网络结构对于深度学习的优势，网络结构搜索成了近一两年较为热门的方向。网络结构搜索 (neural architecture search, NAS)致力于同时优化网络的连接机构和操作算子，然而这类算法中网络结构的搜索过程都是认为设计的，所以网络结构的空间受到了很大的限制。所以，本文通过随机连接网络探索了更加多样性的网络结构。整个模型可以叫做随机网络生成器，实验结果显示，通过探索在更加不受约束的搜索空间中设计网络生成器会有不错的前景。</p>
+<h2 id><a href="#" class="headerlink" title></a><a id="more"></a></h2><h2 id="1-Motivation"><a href="#1-Motivation" class="headerlink" title="1. Motivation"></a>1. Motivation</h2><p>现在大多数神经网络的成功在于其复杂的网络结构设计，为了探索网络结构对于深度学习的优势，网络结构搜索成了近一两年较为热门的方向。网络结构搜索 (neural architecture search, NAS)致力于同时优化网络的连接机构和操作算子，然而这类算法中网络结构的搜索过程都是认为设计的，所以网络结构的空间受到了很大的限制。所以，本文通过随机连接网络探索了更加多样性的网络结构。整个模型可以叫做随机网络生成器，实验结果显示，通过探索在更加不受约束的搜索空间中设计网络生成器会有不错的前景。</p>
 <p>试验结果显示：</p>
 <ul>
 <li>这些随机网络生成器的几个不同变种所产生的网络结构，都可以在Imagenet上面展现出竞争性的优势。其中最好的生成器能产生一些可以媲美甚至超过完全人为设计的或者是通过NAS搜索得到的网络结构。</li>
@@ -135,23 +135,23 @@
 <li>不同的网络生成器生成的网络之间精度有明显差别。</li>
 <li>上述讨论表明网络生成器的设计很关键。</li>
 </ul>
-<h2 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h2><p>为了扩大网络生成器的搜索空间，本文提出了随机连接神经网络。</p>
+<h2 id="2-Methodology"><a href="#2-Methodology" class="headerlink" title="2. Methodology"></a>2. Methodology</h2><p>为了扩大网络生成器的搜索空间，本文提出了随机连接神经网络。</p>
 <p>先简要定义一下网络生成器，给定参数 $\theta$ ，网络生成器 $g$ 会生成一个确定的网络，每次给定相同的 $\theta$，$g$ 一定能产生相同的网络结构。如果网络生成器可以接受另外一个随机种子参数 $s$，通过这个随机种子，多次运行 $g(\theta,s)$ 网络生成器可以产生一族网络结构，我们就叫这个生成器为随机网络生成器 $g(\theta, s)$。(<strong>这里有个问题，每次给定相同的随机种子，随机网络生成器是不是也可以产生不同的网络结构</strong>)<br>文献[1]中使用了循环神经网络RNN作为网络生成器，这里RNN可以输出一些列字符串，这些字符串定义的就是网络结构的超参数(比如，卷积网络每一层的kernel width，kernel height，stride width stride height，filter number)。这里训练这个神经网络是个难点，因为这里并不像传统RNN作为seq2seq模型有输入序列的监督信息可以使用反向传播来训练。本文作者采用了强化学习的策略梯度算法(policy gradient algorithm)中的REIFORCE算法，即使用reward来训练模型。本文中的reward指的是用这个RNN生成一个字符串网络后，训练并测试这个网络，这个网络的精度就是reward，而这个网络结构其实就是强化学习模型中的策略，也就是我们最后想学习的内容。(<strong>这里怎么用上述所提算法更新整个模型是个难点</strong>)<br>文献[2]中也是使用循环神经网络作为网络生成器，它和[1]不同的是，它生成的是一个cell，这个cell由5个参数构成，即RNN可以生成5个参数，对应于5种不同的操作，这个RNN生成的每种操作的输出都是一个softmax分类层，类别是我们预先定义好的不同的操作类型。所以本文做的网络搜索其实是在搜索一种有效的cell结构，之后再将很多个cell拼接起来构成一个网络。这里采用的学习算法和[1]中一样，都是REINFORCE算法。<br>上述两种网络搜索框架的缺陷是，它们都通过预定义的内容限制了网络的搜索空间，比如文献[1]中的搜索方式虽然可以产生多变的卷积核大小，步长，通道数，但是层与层之间的连接方式很受限制。文献[2]中的搜索结构是cell，预定义的内容直接限制了cell的构成结构，只不过一个cell中的操作算法可以变化。总之传统的NAS算法的搜索空间会被很多先验知识所限定。本文提出了随机连接网络，<strong>从而使得网络结构的搜索空间受到更少的限制，但是这里其实操作算子还是受到一定程度的限制</strong>。</p>
-<h2 id="Random-Neural-Generator"><a href="#Random-Neural-Generator" class="headerlink" title="Random Neural Generator"></a>Random Neural Generator</h2><p>本文使用随机图定义的随机网络生成器来生成不同的网络结构，本文选择了三种不同的已有随机图模型，在生成图模型之后，将图模型转化成网络结构。所以本文的两个核心问题点就是：</p>
+<h2 id="3-Random-Neural-Generator"><a href="#3-Random-Neural-Generator" class="headerlink" title="3. Random Neural Generator"></a>3. Random Neural Generator</h2><p>本文使用随机图定义的随机网络生成器来生成不同的网络结构，本文选择了三种不同的已有随机图模型，在生成图模型之后，将图模型转化成网络结构。所以本文的两个核心问题点就是：</p>
 <ul>
 <li>使用什么样的随机图模型生成随机图结构</li>
 <li>怎么将图结构转化成对应的网络结构</li>
 </ul>
-<h3 id="Random-Graph"><a href="#Random-Graph" class="headerlink" title="Random Graph"></a>Random Graph</h3><p>本文选择了三种随机图模型，分别是ER，BA，WS，下面简要讲解以下三种随机图模型。</p>
+<h3 id="3-1-Random-Graph"><a href="#3-1-Random-Graph" class="headerlink" title="3.1. Random Graph"></a>3.1. Random Graph</h3><p>本文选择了三种随机图模型，分别是ER，BA，WS，下面简要讲解以下三种随机图模型。</p>
 <ul>
 <li>ER是最简单的随机图模型，它假设给定N个节点，然后迭代地以概率P对任意两个节点进行连接，在遍历完所有的配对节点之后救生成了一个随机图。所以这个随机模型只有一个参数就是P。</li>
 <li>BA算法以添加新节点的方式生成随机图模型，假设一开始有M个节点，它们之间没有任何边的连接。接下来每新添加一个节点就添加M条新边，怎么添加这M条边那，当将新添加的节点连接到点 $v$ 时，它连接到这个点的概率正比于这个点的degree。就这样重复这个过程知道这个点拥有M条边，之后以同样的方式添加另外的节点，直到一共有N个节点。所以最终生成的图一共有$M*(N-M)$ 条边。所以这个随机模型的唯一参数就是M。</li>
 <li>WS是它们三个中较为复杂的一个随机模型。首先N个节点呈环形摆放，给定一个偶数K，每个节点都与其相邻的K/2个节点相连接。之后按顺时针顺序，对于每个节点 $v$，连接这个节点和它下面的第 $i$ 个节点的边都以概率 $P$ 重新连接。这里第 $i$ 个节点是以均匀分布的方式随机选择的，不过即不选择节点 $v$ 也不选择重复的边，这个选择过程重复K/2次。所以这个随机模型的参数有两个，分别是K和P。</li>
 </ul>
-<h3 id="Generate-Network-Structures-from-Graphs"><a href="#Generate-Network-Structures-from-Graphs" class="headerlink" title="Generate Network Structures from Graphs"></a>Generate Network Structures from Graphs</h3><p>用上述三种方式生成图之后是无向图，首先我们需要将其转化成有向图模型。转换时现将每个图的所有节点附上序号，然后根据这些序号，使得每条边的方向都是从序号小的节点指向序号大的节点。那又按照什么策略给这些点赋序号那：对于ER模型，随机赋值。对于BA模型，初始的M个节点赋值为1到M，其余节点按其添加顺序赋值。WS模型，按照顺时针方向对所有节点赋值。<br>得到有向图之后，就要将其转化成网络结构。这里假设边就是数据流，代表一个节点的数据流向两外一个节点。节点就是运算操作，每个节点都会受到多条边的输入，也会产生多条边的输出。这里我们假设一个节点就由三种操作构成，分别是聚合操作(aggregation)，转换操作(transformation)和分发操作(distribution)。聚合操作就是几条输入边的数据的加权和，这里存在可学习的权值。转换操作就是一个ReLU-Conv-BN的三联操作。分发操作就是将节点数据复制多份分别传输到不同的边上。<br><strong>由上述过程可知，其实虽然所提算法在网络结构上的搜索空间更大了，但是在操作上也严重限制了搜索空间，因为由生成的图转化成网络的过程中，所有运算都是固定的</strong>。</p>
+<h3 id="3-2-Generate-Network-Structures-from-Graphs"><a href="#3-2-Generate-Network-Structures-from-Graphs" class="headerlink" title="3.2. Generate Network Structures from Graphs"></a>3.2. Generate Network Structures from Graphs</h3><p>用上述三种方式生成图之后是无向图，首先我们需要将其转化成有向图模型。转换时现将每个图的所有节点附上序号，然后根据这些序号，使得每条边的方向都是从序号小的节点指向序号大的节点。那又按照什么策略给这些点赋序号那：对于ER模型，随机赋值。对于BA模型，初始的M个节点赋值为1到M，其余节点按其添加顺序赋值。WS模型，按照顺时针方向对所有节点赋值。<br>得到有向图之后，就要将其转化成网络结构。这里假设边就是数据流，代表一个节点的数据流向两外一个节点。节点就是运算操作，每个节点都会受到多条边的输入，也会产生多条边的输出。这里我们假设一个节点就由三种操作构成，分别是聚合操作(aggregation)，转换操作(transformation)和分发操作(distribution)。聚合操作就是几条输入边的数据的加权和，这里存在可学习的权值。转换操作就是一个ReLU-Conv-BN的三联操作。分发操作就是将节点数据复制多份分别传输到不同的边上。<br><strong>由上述过程可知，其实虽然所提算法在网络结构上的搜索空间更大了，但是在操作上也严重限制了搜索空间，因为由生成的图转化成网络的过程中，所有运算都是固定的</strong>。</p>
 <p>这里为了提高模型的能力，进行的分阶段构造，上述过程生成的一个图算是传统网络的一层，这样堆叠多个图，就构成了一个多层的网络。</p>
-<h2 id="Design-and-Optimization"><a href="#Design-and-Optimization" class="headerlink" title="Design and Optimization"></a>Design and Optimization</h2><p>整个算法过程涉及的参数其实并不多。有每个图的节点数N，和每种随机图的参数。因为我们最终作了图的堆叠，所以还需要设置堆叠的图的个数，还有每个节点中的卷积操作的输出通道数和卷积步长。</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] Zoph B, Le Q V. Neural Architecture Search with Reinforcement Learning[J]. international conference on learning representations, 2017.<br>[2] Zoph B, Vasudevan V, Shlens J, et al. Learning Transferable Architectures for Scalable Image Recognition[J]. computer vision and pattern recognition, 2018: 8697-8710.<br>[3] Exploring Randomly Wired Neural Networks for Image Recognition. CoRR: abs/1904.01569</p>
+<h2 id="4-Design-and-Optimization"><a href="#4-Design-and-Optimization" class="headerlink" title="4. Design and Optimization"></a>4. Design and Optimization</h2><p>整个算法过程涉及的参数其实并不多。有每个图的节点数N，和每种随机图的参数。因为我们最终作了图的堆叠，所以还需要设置堆叠的图的个数，还有每个节点中的卷积操作的输出通道数和卷积步长。</p>
+<h2 id="5-Reference"><a href="#5-Reference" class="headerlink" title="5. Reference"></a>5. Reference</h2><p>[1] Zoph B, Le Q V. Neural Architecture Search with Reinforcement Learning[J]. international conference on learning representations, 2017.<br>[2] Zoph B, Vasudevan V, Shlens J, et al. Learning Transferable Architectures for Scalable Image Recognition[J]. computer vision and pattern recognition, 2018: 8697-8710.<br>[3] Exploring Randomly Wired Neural Networks for Image Recognition. CoRR: abs/1904.01569</p>
 
       </div>
       
@@ -160,7 +160,12 @@
             <a href="/tags/random-neural-network-neural-architecture-search/">random neural network, neural architecture search</a>
             </div>
         
-        <nav class="post-nav"><a class="next" href="/2019/04/25/Co-Transfer-Learning/">
+        <nav class="post-nav"><a class="prev" href="/2019/07/18/overview: time series models/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Overview of Forecasting-Principles and Practice</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2019/04/25/Co-Transfer-Learning/">
         <span class="next-text nav-default">Co-Transfer Learning Using Coupled Markov Chains with Restart</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
