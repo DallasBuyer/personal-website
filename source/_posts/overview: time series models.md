@@ -2,7 +2,7 @@
 title: Overview of Forecasting-Principles and Practice
 date: 2019-07-18 14:56:13
 tags: time series models
-categories: time series models, forecasting
+categories: time series models
 ---
 
 最近开始学习一些有关时间序列模型的内容，在此记录下来。此系列博客主要根据一本在线电子书的内容整理而来，为了目的是记录自己的学习历程，让自己的印象更加深刻。这是这本书的[网页连接](https://www.otexts.org/fpp)。
