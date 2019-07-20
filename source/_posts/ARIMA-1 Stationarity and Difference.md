@@ -5,9 +5,8 @@ tags: time series models
 categories: time series models
 ---
 
-ARIMA模型为时间序列预测提供了另外一种方法。在时间序列预测中exponential smoothing和ARIMA是两种最常用的模型，它们对于同一个问题具有互补的优势。Exponential smoothing模型可以描述数据中存在的trend和seasonality，而ARIMA模型可以描述数据中存在的autocorrelations。
-
-## <!--more-->
+ARIMA模型为时间序列预测提供了另外一种方法。在时间序列预测中exponential smoothing和ARIMA是两种最常用的模型，它们对于同一个问题具有互补的优势。Exponential smoothing模型可以描述数据中存在的trend和seasonality，而ARIMA模型可以描述数据中存在的autocorrelations。<!--more-->
+ 
 
 ## 1. Stationarity
 一个stationary时间序列的性质和观察它的时间点无关，也就是它没有trends或者sensonality，因为trend和seasonality会在不同的时间点影响这时间序列的取值。比如white noise就是一个stationary序列，它的性质和你什么时候观察他没有关系。其实一个有这cyclic behaviour(but with no trend or seasonality)的时间序列也是一个stationary序列，这是因为cycles没有固定的长度，我们无法判断一个cycle的峰和谷。

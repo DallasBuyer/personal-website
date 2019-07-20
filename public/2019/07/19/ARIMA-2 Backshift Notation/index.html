@@ -13,8 +13,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<link rel="alternate" href="/default" title="DallasBuyer"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
-<link rel="canonical" href="http://yoursite.com/tags/time-series-models/">
+<meta name="description" content="ARIMA-2 Backshift Notation"><meta name="keywords" content="time series models, DallasBuyer"><link rel="alternate" href="/default" title="DallasBuyer"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="http://yoursite.com/2019/07/19/ARIMA-2 Backshift Notation/">
 
 <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css"><script type="text/x-mathjax-config">
     MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
@@ -40,8 +40,7 @@
   window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true,"latex":true};
 </script>
 
-    <title>time series models · DallasBuyer
-  </title>
+    <title>ARIMA-2 Backshift Notation - DallasBuyer</title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -108,50 +107,43 @@
 
       <main id="main" class="main">
         <div class="content-wrapper">
-          <div id="content" class="content"><section id="archive" class="archive"><div class="archive-title tag">
-          <h2 class="archive-name">time series models</h2>
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">ARIMA-2 Backshift Notation
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-07-19
+        </span><span class="post-category">
+            <a href="/categories/time-series-models/">time series models</a>
+            </span>
         </div>
-      <div class="archive-post">
-        <span class="archive-post-time">
-          2019-07-19
-          </span>
-        <span class="archive-post-title">
-          <a href="/2019/07/19/ARIMA-3 Autoregressive model and Moving average models/" class="archive-post-link">
-            ARIMA-3 Autoregressive Models and Moving Average Models
-          </a>
-        </span>
+    </header>
+
+    <div class="post-content"><p>在研究时间序列延迟的时候，后移符号(backshift notation)非常有用，可以用$B$表示后移操作。也有一些文献使用$L$表示lag而不是$B$表示backshift。换句话说，$B$在$y_t$上面的操作 就是将时序数据后移了一个周期，当然两个$B$就是后移了两个周期。<a id="more"></a></p>
+<p>$$<br>\begin{aligned}<br>By_t &amp; = y_{t-1} \\<br>B(By_t) &amp; = B^2y_t=y_{t-2}<br>\end{aligned}<br>$$</p>
+<p>对于monthly数据来说，如果我们想要表示去年同一个月的数据，就可以写成$B^{12}y_t=y_{t-12}$。后移操作对于描述differencing过程也非常的方便，如下。<br>$$<br>y^{‘}_t=y_t-y_{t-1}=y_t-By_t=(1-B)y_t<br>$$<br>所以由上述式子注意到一阶差分可以表示成$(1-B)$，同样的，二阶差分可以表示成如下形式。<br>$$<br>\begin{aligned}<br>y_t^{‘’} &amp; =y_t-2y_{t-1}+y_{t-2} \\<br>&amp; =(1-2B+B)y_t \\<br>&amp; =(1-B)^2y_t<br>\end{aligned}<br>$$<br>所以一般来说，一个$dth-order$的差分可以写成如下形式。<br>$$<br>(1-B)^dy_t<br>$$<br>后移操作在组合不同的差分计算是非常有用，它可以被当作一个适合于常用代数规则的运算符号。比如，当一个周期性差分紧跟着一个一阶差分时可以表示成如下形式。<br>$$<br>\begin{aligned}<br>(1-B)(1-B^{m})y_t &amp; =(1-B-B^m+B^{m+1})y_t \\<br>                  &amp; =y_t-y_{t-1}-y_{t-m}+y_{t-m-1}<br>\end{aligned}<br>$$</p>
+
       </div>
-    <div class="archive-post">
-        <span class="archive-post-time">
-          2019-07-19
-          </span>
-        <span class="archive-post-title">
-          <a href="/2019/07/19/ARIMA-2 Backshift Notation/" class="archive-post-link">
-            ARIMA-2 Backshift Notation
-          </a>
-        </span>
-      </div>
-    <div class="archive-post">
-        <span class="archive-post-time">
-          2019-07-19
-          </span>
-        <span class="archive-post-title">
-          <a href="/2019/07/19/ARIMA-1 Stationarity and Difference/" class="archive-post-link">
-            ARIMA-1 Stationarity and Difference
-          </a>
-        </span>
-      </div>
-    <div class="archive-post">
-        <span class="archive-post-time">
-          2019-07-18
-          </span>
-        <span class="archive-post-title">
-          <a href="/2019/07/18/overview: time series models/" class="archive-post-link">
-            Overview of Forecasting-Principles and Practice
-          </a>
-        </span>
-      </div>
-    </section><nav class="pagination"></nav></div></div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/time-series-models/">time series models</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2019/07/19/ARIMA-3 Autoregressive model and Moving average models/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">ARIMA-3 Autoregressive Models and Moving Average Models</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2019/07/19/ARIMA-1 Stationarity and Difference/">
+        <span class="next-text nav-default">ARIMA-1 Stationarity and Difference</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
       </main>
 
       <footer id="footer" class="footer"><div class="social-links"><a href="mailto:6171610015@stu.jiangnan.edu.cn" class="iconfont icon-email" title="email"></a>

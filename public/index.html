@@ -109,7 +109,7 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2019/07/19/ARIMA models/">ARIMA-1 Stationarity and Difference</a>
+      <h1 class="post-title"><a class="post-link" href="/2019/07/19/ARIMA-3 Autoregressive model and Moving average models/">ARIMA-3 Autoregressive Models and Moving Average Models</a>
         </h1>
 
       <div class="post-meta">
@@ -121,12 +121,49 @@
         </div>
     </header>
 
-    <div class="post-content"><p>ARIMA模型为时间序列预测提供了另外一种方法。在时间序列预测中exponential smoothing和ARIMA是两种最常用的模型，它们对于同一个问题具有互补的优势。Exponential smoothing模型可以描述数据中存在的trend和seasonality，而ARIMA模型可以描述数据中存在的autocorrelations。</p>
-<h2 id><a href="#" class="headerlink" title></a>
+    <div class="post-content"><p>在机器学习常用的回归模型中，我们使用预测变量(predictors)的线性组合来预测感兴趣的变量，而在自回归模型(autoregression)模型中，我们某个变量过去的取值来预测这个变量。所以这里自回归表示用自己预测自己。而与自回归模型不同，移动平均模型(moving average model)是以类似回归的形式使用过去的预测误差进行预测。
           <div class="read-more">
-            <a href="/2019/07/19/ARIMA models/" class="read-more-link">Read more..</a>
+            <a href="/2019/07/19/ARIMA-3 Autoregressive model and Moving average models/" class="read-more-link">Read more..</a>
           </div>
-        </h2></div></article>
+        </p></div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/2019/07/19/ARIMA-2 Backshift Notation/">ARIMA-2 Backshift Notation</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-07-19
+        </span><span class="post-category">
+            <a href="/categories/time-series-models/">time series models</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>在研究时间序列延迟的时候，后移符号(backshift notation)非常有用，可以用$B$表示后移操作。也有一些文献使用$L$表示lag而不是$B$表示backshift。换句话说，$B$在$y_t$上面的操作 就是将时序数据后移了一个周期，当然两个$B$就是后移了两个周期。
+          <div class="read-more">
+            <a href="/2019/07/19/ARIMA-2 Backshift Notation/" class="read-more-link">Read more..</a>
+          </div>
+        </p></div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/2019/07/19/ARIMA-1 Stationarity and Difference/">ARIMA-1 Stationarity and Difference</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-07-19
+        </span><span class="post-category">
+            <a href="/categories/time-series-models/">time series models</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>ARIMA模型为时间序列预测提供了另外一种方法。在时间序列预测中exponential smoothing和ARIMA是两种最常用的模型，它们对于同一个问题具有互补的优势。Exponential smoothing模型可以描述数据中存在的trend和seasonality，而ARIMA模型可以描述数据中存在的autocorrelations。
+          <div class="read-more">
+            <a href="/2019/07/19/ARIMA-1 Stationarity and Difference/" class="read-more-link">Read more..</a>
+          </div>
+        </p></div></article>
       <article class="post">
     <header class="post-header">
       <h1 class="post-title"><a class="post-link" href="/2019/07/18/overview: time series models/">Overview of Forecasting-Principles and Practice</a>
@@ -141,12 +178,11 @@
         </div>
     </header>
 
-    <div class="post-content"><p>最近开始学习一些有关时间序列模型的内容，在此记录下来。此系列博客主要根据一本在线电子书的内容整理而来，为了目的是记录自己的学习历程，让自己的印象更加深刻。这是这本书的<a href="https://www.otexts.org/fpp" target="_blank" rel="noopener">网页连接</a>。<br>这本数的题目叫做Forecasting:Principles and Practice，原来自己接触的大部分内容都属于机器学习，无非就是两大任务Prediction和Regreesion，而这里的Forecasting本人理解更倾向于是对时间序列进行预测，即预测未来某个时候挥发生的事情，而不是像分类和回归一样针对某个样本判断其类别或者是取值。</p>
-<h2 id><a href="#" class="headerlink" title></a>
+    <div class="post-content"><p>最近开始学习一些有关时间序列模型的内容，在此记录下来。此系列博客主要根据一本在线电子书的内容整理而来，为了目的是记录自己的学习历程，让自己的印象更加深刻。这是这本书的<a href="https://www.otexts.org/fpp" target="_blank" rel="noopener">网页连接</a>。<br>这本数的题目叫做Forecasting:Principles and Practice，原来自己接触的大部分内容都属于机器学习，无非就是两大任务Prediction和Regreesion，而这里的Forecasting本人理解更倾向于是对时间序列进行预测，即预测未来某个时候挥发生的事情，而不是像分类和回归一样针对某个样本判断其类别或者是取值。
           <div class="read-more">
             <a href="/2019/07/18/overview: time series models/" class="read-more-link">Read more..</a>
           </div>
-        </h2></div></article>
+        </p></div></article>
       <article class="post">
     <header class="post-header">
       <h1 class="post-title"><a class="post-link" href="/2019/05/03/random network generator/">Exploring Randomly Wired Neural Networks</a>
@@ -161,33 +197,16 @@
         </div>
     </header>
 
-    <div class="post-content"><p>不同与以往的网络结构搜索算法，本文没有使用强化学习的方式令搜索出来的网络结构分类精度的reward很高。而是加不受限制的随机连接结构有怎样的表现。实验结果显示随机网络生成器所生成的网络结构的表现大多情况下能和人为设计的，通过NAS搜索得到的结果相媲美。一方面这篇文章提出了这种新的思想，就是设计不同的网络生成器；另一方面，结果表明用RL方式的暴力搜索其实并没有很大的优势，距离AutoML也还很遥远。由此启发我们从设计不同的搜索算法，搜索空间转而研究设计具有不同的先验知识的网络生成器。</p>
-<h2 id><a href="#" class="headerlink" title></a>
+    <div class="post-content"><p>不同与以往的网络结构搜索算法，本文没有使用强化学习的方式令搜索出来的网络结构分类精度的reward很高。而是加不受限制的随机连接结构有怎样的表现。实验结果显示随机网络生成器所生成的网络结构的表现大多情况下能和人为设计的，通过NAS搜索得到的结果相媲美。一方面这篇文章提出了这种新的思想，就是设计不同的网络生成器；
           <div class="read-more">
             <a href="/2019/05/03/random network generator/" class="read-more-link">Read more..</a>
           </div>
-        </h2></div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2019/04/25/Co-Transfer-Learning/">Co-Transfer Learning Using Coupled Markov Chains with Restart</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-04-25
-        </span><span class="post-category">
-            <a href="/categories/transfer-learning/">transfer learning</a>
-            </span>
-        </div>
-    </header>
-
-    <div class="post-content"><p>个人感觉这篇文章很有新意，扩展了传统的迁移学习场景，和归纳式迁移学习一样，假设目标域也有标签数据，但是它的创新点在于co-transfer，即进行了双向迁移，使得任何一个领域都可以辅助其他领域迁移。而作者实现co-transfer在于利用了两种关系，一种是Intra-relationship，这里可以直接在同一个特征空间内用距离度量来构造；另外一种是inter-relationships，这里很巧妙地借助了co-occurrence information，注意这里的co-occurrence和多视角学习中的instance-level co-occurrence并不相同。之后将两种关系合并构造一个coupled Markov chain形成了一个联合转移概率图，之后通过向标签分布的概率转移来实现标签预测，这里有趣的是还引入了多标签和标签ranking的概念，有兴趣的同学也可以借鉴这种思想解决多标签分类的问题。</p>
-<h2 id><a href="#" class="headerlink" title></a>
-          <div class="read-more">
-            <a href="/2019/04/25/Co-Transfer-Learning/" class="read-more-link">Read more..</a>
-          </div>
-        </h2></div></article>
-      <nav class="pagination"></nav></section></div></div>
+        </p></div></article>
+      <nav class="pagination"><a class="next" href="/page/2/">
+        <span class="next-text">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></section></div></div>
       </main>
 
       <footer id="footer" class="footer"><div class="social-links"><a href="mailto:6171610015@stu.jiangnan.edu.cn" class="iconfont icon-email" title="email"></a>

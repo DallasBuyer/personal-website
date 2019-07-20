@@ -6,10 +6,7 @@ categories: time series models
 ---
 
 最近开始学习一些有关时间序列模型的内容，在此记录下来。此系列博客主要根据一本在线电子书的内容整理而来，为了目的是记录自己的学习历程，让自己的印象更加深刻。这是这本书的[网页连接](https://www.otexts.org/fpp)。
-这本数的题目叫做Forecasting:Principles and Practice，原来自己接触的大部分内容都属于机器学习，无非就是两大任务Prediction和Regreesion，而这里的Forecasting本人理解更倾向于是对时间序列进行预测，即预测未来某个时候挥发生的事情，而不是像分类和回归一样针对某个样本判断其类别或者是取值。
-
-
-## <!--more-->
+这本数的题目叫做Forecasting:Principles and Practice，原来自己接触的大部分内容都属于机器学习，无非就是两大任务Prediction和Regreesion，而这里的Forecasting本人理解更倾向于是对时间序列进行预测，即预测未来某个时候挥发生的事情，而不是像分类和回归一样针对某个样本判断其类别或者是取值。<!--more-->
 
 
 ## 1. What can be forecast?
