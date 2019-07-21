@@ -100,3 +100,56 @@ $$
 <div align=center>
 <img src="https://raw.githubusercontent.com/DallasBuyer/blog-photos/master/dampedtrend-1.png">
 </div>
+
+
+## 3. Holt-Winters' Seasonal Method
+这个方法可以捕获seasonality，它包含一个forecast equation和三个分别针对level $l_t$，trend $b_t$和seasonal component $s_t$的smoothing equations，它们的smoothing parameters分别是$\alpha, \beta^*,\gamma$。我们使用$m$表示周期性的frequency。例如，一年有四个季度，那么$m=4$，一年有12个月，那么$m=12$。由于周期成分的属性不同，这个方法有两种变体，一种是additive method，一种是multiplicative method。
+
+### 3.1. Holt-Winters' additive method
+The additive method is preferered when the seasonal variations are roughly constant through the series。它的表达式如下：
+$$
+\begin{aligned}
+\hat{y}_{t+h|t} &=l_t+hb_t+s_{t+h-m(k+1)} \\\\
+l_t & =\alpha (y_t-s_{t-m})+(1-\alpha)(l_{t-1}+b_{t-1}) \\\\
+b_t & =\beta (l_t-l_{t-1})+(1-\beta)b_{t-1} \\\\
+s_t & = \gamma(y_t-l_{t-1}-b_{t-1})+(1-\gamma)s_{t-m}
+\end{aligned}
+$$
+这里$k$是$(h-1)/m$的整数部分，这是为了保证用于预测的周期索引对应最后一年的样本，比如现在按季度为周期，则$m=4$，如果预测10个月以后的数据，则$k=2$，就是以第二年的数据为标准来预测，而非第一年。对于$l_t$，它是对具有周期性质的调整后观测值$y_t-s_{t-m}$和非周期性预测$l_{t-1}+b_{t-1}$之间的平滑。$b_t$采用的就是Holt's linear method。而$s_t$是当前季节索引$(y_t-l_{t-1}-b_{t-1})$和去年相同周期的季节索引$s_{t-m}$之间的平滑。
+季节等式常表达成如下形式:
+$$
+s_t=\gamma(y_t-l_t)+(1-\gamma)s_{s-m}
+$$
+如果把平滑函数$l_t$带入进去，可以得到：
+$$
+s_t=\gamma(1-\alpha)(y_t-l_{t-1}-b_{t-1})+[1-\gamma(1-\alpha)]s_{t-m}
+$$
+这个和上面的$s_t$平滑等式是一样的。只不过令$\gamma=\gamma^*(1-\alpha)$，注意上述四个等式中的$r$都应该是$r^*$，则如果令$0<\gamma^*<1$，则$0<\gamma<1-\alpha$
+
+### 3.2. Holt-Winters' multiplicative method
+The multiplicative method is preferred when the seasonal variations are changing proportional to the level of the series。其表达式如下：
+
+$$
+\begin{aligned}
+\hat{y}_{t+h|t} & =(l_t+hb_t)s_{t+h-m(k+1)} \\\\
+l_t&=\alpha \frac{y_t}{s_{t-m}}+(1-\alpha)(l_{t-1}+b_{t-1}) \\\\
+b_t &= \beta(l_t-l_{t-1})+(1-\beta)b_{t-1} \\\\
+s_t &= \gamma \frac{y_t}{(l_t+b_{t-1})}+(1-\gamma)s_{t-m}   
+\end{aligned}
+$$
+
+### 3.3. Holt-Winters' damped method
+和2.2节类似，对$b_t$添加一个参数$\phi$
+
+## 4. A taxonomy of exponential smoothing methods
+其实指数平滑模型还不限于上面提到的内容，通过组合不同的trend和seasonal成分，可以组成9种模型变体。如果用(T,S)表示这个模型包含有trend和seasonal成分，用(A,M)表示这个模型是additive trend和multiplicative seasonality，$(A_d,N)$表示这个模型的damped trend和no seasonality，则9中组合方式见下表。
+
+<div align=center>
+<img src="https://raw.githubusercontent.com/DallasBuyer/blog-photos/master/ES%20methods.png">
+</div>
+
+上述组合方式的公式表达如下：
+
+<div align=center>
+<img width=400 src="https://raw.githubusercontent.com/DallasBuyer/blog-photos/master/pegelstable.png">
+</div>
