@@ -54,7 +54,7 @@ $$
 $$
 \begin{aligned}
 MA(1): \quad y_t &= 20+\epsilon_t+0.8\epsilon_{t-1} \\\\
-MA(2): \quad y_t &= \epsilon_t - \epsilon_{t-1} + 0.8\epsilon{t-2} 
+MA(2): \quad y_t &= \epsilon_t - \epsilon_{t-1} + 0.8\epsilon_{t-2} 
 \end{aligned}
 $$
 其实任何一个stationary $\text{AR}(p)$模型都可以表示成一个$\text{MA}(\infty)$模型，我们可以推到以下AR(1)模型。

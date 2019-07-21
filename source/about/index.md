@@ -46,7 +46,7 @@ Lixiao Xie, Zhaohong Deng, **Peng Xu**, Kup-Sze Choi, Shitong Wang
 ## Talks
 Spotlight Talk on the Thirty-Third AAAI Conference on Artificial Intelligence, Hawaii, USA, 01/2019
 
-## Reviewer
+## Reviewer and PC Member
 
 **Journals**
 IEEE Transactions on Fuzzy System
@@ -56,6 +56,7 @@ Neurocomputing
 
 **Conference**
 The Third International Conference on Biological Information and Biomedical Engineering (BIBE 2019)
+The Twenty-Sixth International Conference on Neural Information Processing (ICONIP2019)
 
 ## Movie Recommendation
 

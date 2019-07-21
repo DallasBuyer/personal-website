@@ -9,7 +9,7 @@ ARIMA模型为时间序列预测提供了另外一种方法。在时间序列预
  
 
 ## 1. Stationarity
-一个stationary时间序列的性质和观察它的时间点无关，也就是它没有trends或者sensonality，因为trend和seasonality会在不同的时间点影响这时间序列的取值。比如white noise就是一个stationary序列，它的性质和你什么时候观察他没有关系。其实一个有这cyclic behaviour(but with no trend or seasonality)的时间序列也是一个stationary序列，这是因为cycles没有固定的长度，我们无法判断一个cycle的峰和谷。
+一个stationary时间序列的性质和观察它的时间点无关，也就是它没有trends或者sensonality，因为trend和seasonality会在不同的时间点影响这时间序列的取值。比如white noise就是一个stationary序列，它的性质和你什么时候观察他没有关系。其实一个有这cyclic behaviour(but with no trend or seasonality)的时间序列也是一个stationary序列，这是因为cycles没有固定的长度，我们无法判断一个cycle的峰和谷。这里stationary序列指的是稳定序列，稳定序列的特性就是不受时间维度上各种特征的影响，之和自己之前的取值有关，这其实也是ARIMA算法的基础。比如股票数据一般来说其实就是不稳定数据，因为它常常受到政策，新闻或者整个经济大环境的影响。
 一般来说，stationary序列就是那些在long-term中没有predictable patterns的序列。下图是一些时间序列，请分析以下它们所属的类型，是不是stationary序列。
 * (a) 连续200天的谷歌股票价格
 * (b) 连续200天的谷歌股票价格的变化

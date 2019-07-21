@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="Exponential Smoothing"><meta name="keywords" content="time series models, DallasBuyer"><link rel="alternate" href="/default" title="DallasBuyer"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="http://yoursite.com/2019/07/20/Exponential smoothing/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css"><script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true,"latex":true};
+</script>
+
+    <title>Exponential Smoothing - DallasBuyer</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">DallasBuyer</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/publications/">
+        <li class="mobile-menu-item">Publications
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">DallasBuyer</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/publications/">
+            Publications
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">Exponential Smoothing
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-07-20
+        </span><span class="post-category">
+            <a href="/categories/time-series-models/">time series models</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Simple-exponential-smoothing"><span class="toc-text">1. Simple exponential smoothing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Weighted-Average-Form"><span class="toc-text">1.1. Weighted Average Form</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Component-Form"><span class="toc-text">1.2. Component Form</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Optimization"><span class="toc-text">1.3. Optimization</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Trend-Methods"><span class="toc-text">2. Trend Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Holt’s-linear-trend-method"><span class="toc-text">2.1. Holt’s linear trend method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Damped-trend-methods"><span class="toc-text">2.2. Damped trend methods</span></a></li></ol></li></ol>
+    </div>
+  </div><div class="post-content"><p>指数平滑(exponential smoothing)和ARIMA一样也是一个使用很广泛的时间序列预测模型，基于指数平滑模型的预测对于过去观测量的一个加权平均，不过这里的加权平均和ARIMA不一样，并非线性加权，这里的权重会随着以往观测量变得久远而不断衰减。换句话说，就是距离当前预测越近的观测量，它的权重越高。<a id="more"></a></p>
+<h2 id="1-Simple-exponential-smoothing"><a href="#1-Simple-exponential-smoothing" class="headerlink" title="1. Simple exponential smoothing"></a>1. Simple exponential smoothing</h2><p>最简单的模型就是simple exponential smoothing(SME)，这个方法适用于那些没有clear trend or seasonal pattern的序列。如下图是几年间某个地区油的产量，这个序列并没有表现出很清晰的趋势或者周期性(当然最近几年有过一个上升阶段，这可能代表着某种趋势，这个以后再讨论有没有更高级的方法去建模)。我们现在只考虑用简单的naive和average方式做预测。</p>
+<div align="center"><br><img src="https://raw.githubusercontent.com/DallasBuyer/blog-photos/master/7-oil-1.png"><br></div>
+
+<p>使用naive方法，有如下预测,这相当于忽略了之前所有信息，之用前一个，也就是把weight全都给了前一个时间点的值。</p>
+<p>$$<br>\hat{y}_{T+h|T}=y_T<br>$$</p>
+<p>使用average方法，则有如下预测，就相当于给之前预测都是平均的weight。</p>
+<p>$$<br>y_{T+h|T}=\frac{1}{T} \sum_{t=1}^T y_t<br>$$</p>
+<p>上述两个其实是两个极端现象，更合理的情况是我们想让离预测点近的值权重更大，而离的远的值权重小一些。这其实也是SEM背后隐藏的思想，所以可以用如下方式对SEM建模。</p>
+<p>$$<br>\hat{y}_{T+1|T}=\alpha y_T+\alpha(1-\alpha)y_{T-1}+\alpha(1-\alpha)^2y_{T-2}+\ldots<br>$$</p>
+<p>参数$0&lt;\alpha&lt;1$就是smoothing parameter，所以权重衰减是由参数$\alpha$控制的。下面是参数$\alpha$取不同值的权重衰减情况。可以看出只要参数在0到1之间，权重就会随时间的变化呈现指数形式不断衰减，所以这也是exponential smoothing的由来。</p>
+<div align="center"><br><img width="650" src="https://raw.githubusercontent.com/DallasBuyer/blog-photos/master/weight-decay.png"><br></div>
+
+<p>下面我们给出两种和上述SEM模型等价的表达式：</p>
+<h3 id="1-1-Weighted-Average-Form"><a href="#1-1-Weighted-Average-Form" class="headerlink" title="1.1. Weighted Average Form"></a>1.1. Weighted Average Form</h3><p>$$<br>\hat{y}_{T+1|t} = \alpha y_T + (1-\alpha)\hat{y}_{T|T-1}<br>$$<br>这其实是一种迭代的方式给出的公式，只要从序列的开始进行建模，逐层带进去最后的计算结果和标准的SEM形式一致。</p>
+<h3 id="1-2-Component-Form"><a href="#1-2-Component-Form" class="headerlink" title="1.2. Component Form"></a>1.2. Component Form</h3><p>另外一种方式叫做成分表达式，对于SEM来说，我们只有单一的成分也就是level，$l_t$，之后的其他方法可能会涉及其他的成分，比如趋势成分trend component $b_t$和周期成分seasonal component $s_t$，这种成分表达式包含一个预测式和对于每种成分的一个平滑等式，SEM的component form如下。</p>
+<p>$$<br>\begin{aligned}<br>\text{Forecast equation}: &amp; \quad \hat{y}_{t+h|t} =l_t \\<br>\text{Smoothing equation}: &amp; \quad l_t =\alpha y_t+(1-\alpha)l_{t-1}<br>\end{aligned}<br>$$</p>
+<p>由上式可以看出其实在$t+1$时刻的预测值其实就是在$t$时间的$level$。如果我们把上式中的$l_t$和$l_{t-1}$都替换成$y_{t+1|t}$和$y_{t|t-1}$，就可以回复SEM的weighted average form。</p>
+<h3 id="1-3-Optimization"><a href="#1-3-Optimization" class="headerlink" title="1.3. Optimization"></a>1.3. Optimization</h3><p>上述模型中有平滑参数以及序列模型初始值需要选，但是认为选效果可能不好，这时候就和线性回归一样，可以用如下优化的方式求解，不过模型不是线性模型，所以无法给出解析解，要用软件包来求解。<br>$$<br>\text{SSE}=\sum_{t=1}^T(y_t-\hat{y}_{t|t-1})^2<br>$$</p>
+<h2 id="2-Trend-Methods"><a href="#2-Trend-Methods" class="headerlink" title="2. Trend Methods"></a>2. Trend Methods</h2><h3 id="2-1-Holt’s-linear-trend-method"><a href="#2-1-Holt’s-linear-trend-method" class="headerlink" title="2.1. Holt’s linear trend method"></a>2.1. Holt’s linear trend method</h3><p>前面提到了SEM模型的component形式里面只包含了level，而包含趋势的表达式则可以写成如下形式。</p>
+<p>$$<br>\begin{aligned}<br>\text{Forecast equation}: \quad &amp; y_{t+h|t} =l_t+hb_t \\<br>\text{Smoothing equation}: \quad &amp; l_t =\alpha y_t+(1-\alpha)(l_{t-1}+b_{t-1}) \\<br>\text{Trend equation}: \quad &amp; b_t = \beta (l_t-l_{t-1})+(1-\beta) b_{t-1}<br>\end{aligned}<br>$$</p>
+<p>这里$b_t$就是指序列在时间$t$时候的趋势，趋势也是一种斜率其实，所以用$l_t-l_{t-1}$来表示。$0&lt;\beta^*&lt;1$是趋势的平滑参数。</p>
+<h3 id="2-2-Damped-trend-methods"><a href="#2-2-Damped-trend-methods" class="headerlink" title="2.2. Damped trend methods"></a>2.2. Damped trend methods</h3><p>Holt’s linear trend method在预测的时候会产生一个问题，就是在无限地预测未来的时候，会表现出constant trend(increasing or decreasing)。所以就有了这个方法，通过引入一个参数，它可以<strong>dampens</strong>(抑制)这种constant trend。包含有这种dampen trend的方法已经被证实特别成功，<strong>几乎毋庸置疑的它是时间序列预测算法中最流行的一个</strong>。除了参数$\alpha$和$\beta^*$，这个方法还引入了一个参数叫做damping parameter $0&lt;\phi&lt;1$。</p>
+<p>$$<br>\begin{aligned}<br>y_{t+h|t} &amp; = l_t+(\phi+\phi^2+\ldots+\phi^h)b_t \\<br>l_t &amp; = \alpha y_t+(1-\alpha)(l_{t-1}+\phi b_{t-1}) \\<br>b_t &amp; = \beta(l_t-l_{t-1})+(1-\beta)\phi b_{t-1}<br>\end{aligned}<br>$$</p>
+<p>如果$\phi=1$，那这个方法就退化成了与Holt’s linear trend method一样。而对于$0&lt;\phi&lt;1$，它可以抑制这种constant trend。事实上，对于任意的$0&lt;\phi&lt;1$，当$h\to\infty$时，预测都是收敛到$l_T+\frac{\phi}{1-\phi}b_T$，也就是short-run forecast are trended while long-run forecasts are constant。实际应用在，一般设置$0.8&lt;\phi&lt;0.98$。。如下图是当$\phi=0.9$时，某个时间序列的两种方法的趋势预测图。</p>
+<div align="center"><br><img src="https://raw.githubusercontent.com/DallasBuyer/blog-photos/master/dampedtrend-1.png"><br></div>
+
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/time-series-models/">time series models</a>
+            </div>
+        
+        <nav class="post-nav"><a class="next" href="/2019/07/20/ARIMA-4 AutoRegressive Integrated Moving Average/">
+        <span class="next-text nav-default">ARIMA-4 AutoRegressive Integrated Moving Average</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:6171610015@stu.jiangnan.edu.cn" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/dallasbuyer" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2019<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">PengXu</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>

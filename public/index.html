@@ -109,6 +109,44 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/2019/07/20/Exponential smoothing/">Exponential Smoothing</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-07-20
+        </span><span class="post-category">
+            <a href="/categories/time-series-models/">time series models</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>指数平滑(exponential smoothing)和ARIMA一样也是一个使用很广泛的时间序列预测模型，基于指数平滑模型的预测对于过去观测量的一个加权平均，不过这里的加权平均和ARIMA不一样，并非线性加权，这里的权重会随着以往观测量变得久远而不断衰减。换句话说，就是距离当前预测越近的观测量，它的权重越高。
+          <div class="read-more">
+            <a href="/2019/07/20/Exponential smoothing/" class="read-more-link">Read more..</a>
+          </div>
+        </p></div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/2019/07/20/ARIMA-4 AutoRegressive Integrated Moving Average/">ARIMA-4 AutoRegressive Integrated Moving Average</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-07-20
+        </span><span class="post-category">
+            <a href="/categories/time-series-models/">time series models</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>如果我们将自回归差分模型(differencing with autoregression)和移动平均模型(moving average model)做一个组合，就可以得到非周期性的ARIMA模型，这个模型是non-seasonal的。ARIMA是AutoRegressive Integrated Moving Average的缩写，这里integration其实是differencing的逆过程。注意这里ARIMA模型中的序列是做过差分的序列，所以预测器中既包含了延迟的(lagged)时间$y_t$，也包含了延迟的误差$\epsilon_t$。
+          <div class="read-more">
+            <a href="/2019/07/20/ARIMA-4 AutoRegressive Integrated Moving Average/" class="read-more-link">Read more..</a>
+          </div>
+        </p></div></article>
+      <article class="post">
+    <header class="post-header">
       <h1 class="post-title"><a class="post-link" href="/2019/07/19/ARIMA-3 Autoregressive model and Moving average models/">ARIMA-3 Autoregressive Models and Moving Average Models</a>
         </h1>
 
@@ -162,44 +200,6 @@
     <div class="post-content"><p>ARIMA模型为时间序列预测提供了另外一种方法。在时间序列预测中exponential smoothing和ARIMA是两种最常用的模型，它们对于同一个问题具有互补的优势。Exponential smoothing模型可以描述数据中存在的trend和seasonality，而ARIMA模型可以描述数据中存在的autocorrelations。
           <div class="read-more">
             <a href="/2019/07/19/ARIMA-1 Stationarity and Difference/" class="read-more-link">Read more..</a>
-          </div>
-        </p></div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2019/07/18/overview: time series models/">Overview of Forecasting-Principles and Practice</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-07-18
-        </span><span class="post-category">
-            <a href="/categories/time-series-models/">time series models</a>
-            </span>
-        </div>
-    </header>
-
-    <div class="post-content"><p>最近开始学习一些有关时间序列模型的内容，在此记录下来。此系列博客主要根据一本在线电子书的内容整理而来，为了目的是记录自己的学习历程，让自己的印象更加深刻。这是这本书的<a href="https://www.otexts.org/fpp" target="_blank" rel="noopener">网页连接</a>。<br>这本数的题目叫做Forecasting:Principles and Practice，原来自己接触的大部分内容都属于机器学习，无非就是两大任务Prediction和Regreesion，而这里的Forecasting本人理解更倾向于是对时间序列进行预测，即预测未来某个时候挥发生的事情，而不是像分类和回归一样针对某个样本判断其类别或者是取值。
-          <div class="read-more">
-            <a href="/2019/07/18/overview: time series models/" class="read-more-link">Read more..</a>
-          </div>
-        </p></div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2019/05/03/random network generator/">Exploring Randomly Wired Neural Networks</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-05-03
-        </span><span class="post-category">
-            <a href="/categories/neural-architecture-search/">neural architecture search</a>
-            </span>
-        </div>
-    </header>
-
-    <div class="post-content"><p>不同与以往的网络结构搜索算法，本文没有使用强化学习的方式令搜索出来的网络结构分类精度的reward很高。而是加不受限制的随机连接结构有怎样的表现。实验结果显示随机网络生成器所生成的网络结构的表现大多情况下能和人为设计的，通过NAS搜索得到的结果相媲美。一方面这篇文章提出了这种新的思想，就是设计不同的网络生成器；
-          <div class="read-more">
-            <a href="/2019/05/03/random network generator/" class="read-more-link">Read more..</a>
           </div>
         </p></div></article>
       <nav class="pagination"><a class="next" href="/page/2/">

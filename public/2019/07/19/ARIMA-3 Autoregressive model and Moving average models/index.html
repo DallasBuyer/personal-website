@@ -146,7 +146,7 @@
 <h2 id="2-Moving-average-models"><a href="#2-Moving-average-models" class="headerlink" title="2. Moving average models"></a>2. Moving average models</h2><p>移动平均模型的形式如下：<br>$$<br>y_t=c+\epsilon_t+\theta_1\epsilon_{t-1}+\theta_2\epsilon_{t-2}+\ldots+\theta_q\epsilon_{t-q}<br>$$<br>这里$\epsilon_t$是白噪声，我们把这个模型叫做q阶的<strong>MA(q)</strong>模型，当然我们其实无法观测到变量$\epsilon_t$的取值，所以它不算是通常意义上的回归模型。它知识认为$y_t$的值可以由过去的预测误差值的加权移动平均得到。如下图展示了两个模型MA(1)和MA(2)。</p>
 <div align="center"><br><img src="https://raw.githubusercontent.com/DallasBuyer/blog-photos/master/maq-1.png"><br></div>
 
-<p>上图中的两个模型MA(1)和MA(2)分别为:<br>$$<br>\begin{aligned}<br>MA(1): \quad y_t &amp;= 20+\epsilon_t+0.8\epsilon_{t-1} \\<br>MA(2): \quad y_t &amp;= \epsilon_t - \epsilon_{t-1} + 0.8\epsilon{t-2}<br>\end{aligned}<br>$$<br>其实任何一个stationary $\text{AR}(p)$模型都可以表示成一个$\text{MA}(\infty)$模型，我们可以推到以下AR(1)模型。<br>$$<br>\begin{aligned}<br>MA(1): \quad y_t &amp;= \phi_1y_{t-1}+\epsilon_t \\<br>&amp;= \phi_1(\phi_1y_{t-2}+\epsilon_{t-1})+\epsilon_t \\<br>&amp;= \phi_1^2y_{t-2}+\phi_1\epsilon_{t-1}+\epsilon_t \\<br>&amp;= \phi_1^3y_{t-3}+\phi_1^2\epsilon_{t-2}+\phi_1\epsilon_{t-1}+\epsilon_t \\<br>&amp;= etc.<br>\end{aligned}<br>$$<br>如果$-1&lt;\phi_1&lt;1$，随着$k$变大，$\phi_1^k$的值会越变越小，最终我们得到如下公式。<br>$$<br>y_t=\epsilon_t+\phi_1\epsilon_{t-1}+\phi_1^2\epsilon_{t-2}+\phi_1^3\epsilon_{t-3}+\ldots<br>$$<br>即为一个$\text{MA}(\infty)$模型。如果里面的参数$\phi_1$和$\phi_2$有满足上面提到的约束，则这个MA模型是可逆的，它可以转化为一个AR模型，也就是我们可以将任何可逆的MA(q)模型，转化成$\text{AR}(\infty$)模型，而且我们不仅仅是为了转化，这个过此中也有一些很不错的数学性质。比如我们将一个MA(1)过程，$y_t=\epsilon_t+\theta_1\epsilon_{t-1}$转化成它的相应$\text{AR}(\infty)$模型,则有如下性质：<br>$$<br>\epsilon_t=\sum_{k=0}^\infty(-\theta)^jy_{t-j}<br>$$<br>此处未完待续…</p>
+<p>上图中的两个模型MA(1)和MA(2)分别为:<br>$$<br>\begin{aligned}<br>MA(1): \quad y_t &amp;= 20+\epsilon_t+0.8\epsilon_{t-1} \\<br>MA(2): \quad y_t &amp;= \epsilon_t - \epsilon_{t-1} + 0.8\epsilon_{t-2}<br>\end{aligned}<br>$$<br>其实任何一个stationary $\text{AR}(p)$模型都可以表示成一个$\text{MA}(\infty)$模型，我们可以推到以下AR(1)模型。<br>$$<br>\begin{aligned}<br>MA(1): \quad y_t &amp;= \phi_1y_{t-1}+\epsilon_t \\<br>&amp;= \phi_1(\phi_1y_{t-2}+\epsilon_{t-1})+\epsilon_t \\<br>&amp;= \phi_1^2y_{t-2}+\phi_1\epsilon_{t-1}+\epsilon_t \\<br>&amp;= \phi_1^3y_{t-3}+\phi_1^2\epsilon_{t-2}+\phi_1\epsilon_{t-1}+\epsilon_t \\<br>&amp;= etc.<br>\end{aligned}<br>$$<br>如果$-1&lt;\phi_1&lt;1$，随着$k$变大，$\phi_1^k$的值会越变越小，最终我们得到如下公式。<br>$$<br>y_t=\epsilon_t+\phi_1\epsilon_{t-1}+\phi_1^2\epsilon_{t-2}+\phi_1^3\epsilon_{t-3}+\ldots<br>$$<br>即为一个$\text{MA}(\infty)$模型。如果里面的参数$\phi_1$和$\phi_2$有满足上面提到的约束，则这个MA模型是可逆的，它可以转化为一个AR模型，也就是我们可以将任何可逆的MA(q)模型，转化成$\text{AR}(\infty$)模型，而且我们不仅仅是为了转化，这个过此中也有一些很不错的数学性质。比如我们将一个MA(1)过程，$y_t=\epsilon_t+\theta_1\epsilon_{t-1}$转化成它的相应$\text{AR}(\infty)$模型,则有如下性质：<br>$$<br>\epsilon_t=\sum_{k=0}^\infty(-\theta)^jy_{t-j}<br>$$<br>此处未完待续…</p>
 
       </div>
       
@@ -155,7 +155,12 @@
             <a href="/tags/time-series-models/">time series models</a>
             </div>
         
-        <nav class="post-nav"><a class="next" href="/2019/07/19/ARIMA-2 Backshift Notation/">
+        <nav class="post-nav"><a class="prev" href="/2019/07/20/ARIMA-4 AutoRegressive Integrated Moving Average/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">ARIMA-4 AutoRegressive Integrated Moving Average</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2019/07/19/ARIMA-2 Backshift Notation/">
         <span class="next-text nav-default">ARIMA-2 Backshift Notation</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
