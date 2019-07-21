@@ -151,5 +151,5 @@ $$
 上述组合方式的公式表达如下：
 
 <div align=center>
-<img width=400 src="https://raw.githubusercontent.com/DallasBuyer/blog-photos/master/pegelstable.png">
+<img width=700 src="https://raw.githubusercontent.com/DallasBuyer/blog-photos/master/pegelstable.png">
 </div>
